@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title} I'm Akshitha Katyaini Reddy Akkireddy 
+  button(type="button", class="btn btn-secondary", onclick="double()") I'm a button
+  br
+  br
+
+  div#double Up the amount
+  br
+  
+  script.
+    var value = 0;
+    var power = 1;
+
+    function double() {
+      value += 1;
+      power *= 2;
+      document.getElementById("double").innerText = "Two to the power " + value + " is " + power;
+    }
+  
