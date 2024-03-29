@@ -1,7 +1,7 @@
-# S24wb27akkireddy
+# S24db27akkireddy
 Learning about pugs
 
-Render Link : https://s24wb27akkireddy.onrender.com
+Render Link : https://s24db27akkireddy.onrender.com
 
 ### Class: Gift
 
