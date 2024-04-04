@@ -59,7 +59,7 @@ async function recreateDB(){
  ).catch(err=>{
  console.error(err)
  });
- 
+
  let instance2 = new gift({gift_type: 'Book', gift_size: 'Medium', gift_price: 15});
  instance2.save().then(doc=>{
  console.log("Second object saved")}

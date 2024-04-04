@@ -4,11 +4,7 @@ block content
   div.container-fluid
     div.row
       -
-        let results = [
-          { gift_type: 'Toy', gift_size: 'Small', gift_price: 10 },
-          { gift_type: 'Book', gift_size: 'Medium', gift_price: 15 },
-          { gift_type: 'Electronics', gift_size: 'Large', gift_price: 50 }
-        ]      
+        let gift = results     
       each gift,index in results
         .col-sm-2 
           div.col-sm-2(onclick=`buy(${index})`)
