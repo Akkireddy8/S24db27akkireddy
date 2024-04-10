@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    h1= title
+
+    if (toShow == null)
+        h2 No instance to update
+    else
+        - let giftid = toShow._id
+        - let gift_type = toShow.gift_type
+        - let gift_size = toShow.gift_size
+        - let gift_price = toShow.gift_price
+        div.row(class='mb-2')
+            div.mr-1 ID is
+                div #{giftid}
+                - let actionid = "/resource/gift/" + giftid
+                form(id='giftForm', action= actionid, method="POST")
+                    div.form-group
+                        label.giftAttr(for='gift_type') gift Type
+                        input#gift_type(type='text' name='gift_type', value= gift_type)
+                    div.form-group
+                        label.giftAttr(for='gift_size') gift Size
+                        input#gift_size(type='text' name='gift_size', value= gift_size)
+                    div.form-group
+                        label.giftAttr(for='gift_price') gift Price
+                        input#gift_price(type='number' name='gift_price', value= gift_price)
+                    input(type="submit")
+    script.
+        document.forms['giftForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.text(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Update succeeded")
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Update failed " + error )
+            });
+        });

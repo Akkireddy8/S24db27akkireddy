@@ -1,0 +1,52 @@
+extends layout
+
+block content
+    h1= title
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let giftid = toShow._id
+        - let gift_type = toShow.gift_type
+        - let gift_size = toShow.gift_size
+        - let gift_price = toShow.gift_price
+        - let actionid = "/resource/gift/" + giftid
+        script.
+            let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='giftAttr mr-3') gift ID is:
+                div #{giftid}
+            div.row
+                div(class='giftAttr mr-3') gift Type is:
+                div #{gift_type}
+            div.row
+                div(class='giftAttr mr-3') gift Size is:
+                div #{gift_size}
+            div.row
+                div(class='giftAttr mr-3') gift Price is:
+                div #{gift_price}
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+        
+    script.
+        function cancel() {
+            // Go back to the home page for the gift collection
+            window.location.href='/gift'
+        }
+    script.
+        function deleteOnid() {
+            console.log("starting delete")
+            // delete first
+            fetch(actionid, {
+                method: 'DELETE' // Don't need a body for the delete
+            }).then((resp) => {
+                return resp.text(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Delete succeeded")
+                window.location.href='/gift'
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Delete failed " + error )
+            });
+        }

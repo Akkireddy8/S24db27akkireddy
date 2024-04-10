@@ -1,0 +1,24 @@
+extends layout
+block content
+  h1= title
+
+  if toShow == null
+    h2 No instance to show
+  else
+    - let giftid = toShow._id
+    - let gift_type = toShow.gift_type
+    - let gift_size = toShow.gift_size
+    - let gift_price = toShow.gift_price 
+    div
+      div.row
+        div.giftAttr.mr-3 gift ID is:
+        div #{giftid}
+      div.row
+        div.giftAttr.mr-3 gift Type is:
+        div #{gift_type}
+      div.row
+        div.giftAttr.mr-3 gift Size is:
+        div #{gift_size}
+      div.row
+        div.giftAttr.mr-3 gift Price is:
+        div #{gift_price}
