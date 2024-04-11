@@ -30,23 +30,21 @@ block content
         
     script.
         function cancel() {
-            // Go back to the home page for the gift collection
             window.location.href='/gift'
         }
     script.
         function deleteOnid() {
             console.log("starting delete")
-            // delete first
             fetch(actionid, {
-                method: 'DELETE' // Don't need a body for the delete
+                method: 'DELETE' 
             }).then((resp) => {
-                return resp.text(); // or resp.text() or whatever the server sends
+                return resp.text(); 
             }).then((body) => {
                 alert("Delete succeeded")
                 window.location.href='/gift'
-                // TODO handle body
+               
             }).catch((error) => {
-                // TODO handle error
+              
                 alert("Delete failed " + error )
             });
         }

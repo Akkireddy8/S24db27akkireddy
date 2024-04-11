@@ -1,33 +1,31 @@
 extends layout
 
 block content
-  h1= title
-  form(id='giftForm', action="/resource/gift", method="POST")
-    div.form-group
-      label.giftAttr(for='gift_type') gift type
-      input#gift_type(type='text', name='gift_type')
-    div.form-group
-      label.giftAttr(for='size') gift size
-      input#size(type='text', name='gift_size')
-    div.form-group
-      label.giftAttr(for='price') gift price
-      input#cost(type='number', name='gift_price')
-    input(type="submit")
+  .container
+    h1= title
+    form(id='giftForm', action="/resource/gift", method="POST")
+      .form-group
+        label(for='gift_type', class='form-label') Gift Type
+        input#gift_type(type='text', name='gift_type', class='form-control', required)
+      .form-group
+        label(for='size', class='form-label') Gift Size
+        input#size(type='text', name='gift_size', class='form-control', required)
+      .form-group
+        label(for='price', class='form-label') Gift Price
+        input#cost(type='number', name='gift_price', class='form-control', required)
+      button(type="submit", class="btn btn-primary") Submit
 
   script.
     document.forms['giftForm'].addEventListener('submit', (event) => {
       event.preventDefault();
-      // TODO do something here to show user that form is being submitted
       fetch(event.target.action, {
         method: 'POST',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        body: new URLSearchParams(new FormData(event.target)) 
       }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
+        return resp.json();
       }).then((body) => {
         alert("Save succeeded");
-        // TODO handle body
       }).catch((error) => {
-        // TODO handle error
         alert("Save failed " + error );
       });
     });
