@@ -3,12 +3,17 @@ extends layout
 block content
   h1= title
   - let items = results;
+  a.btn.btn-primary(href="/gift/create") Create Gift
   div(class="container-fluid")
   div(class="row m-1")
     each item in items
       - let destination = `dispatch(\"/gift/update?id=${item._id}\")`
+      - let destinationdetail = `dispatch(\"/gift/detail?id=${item._id}\")`
+      - let destinationdelete = `dispatch(\"/gift/delete?id=${item._id}\")`
       div(class="row-sm-2", class="m-1") Item #{item.gift_type}(#{item.gift_size}) is #{item.gift_price}
       button.btn( class="btn-primary ml-1", onclick= destination) Update
+      button.btn( class="btn-secondary ml-1", onclick= destinationdetail) detail
+      button.btn( class="btn-warning ml-1", onclick= destinationdelete) delete
   script.
     function dispatch(path){
       window.location.href=path}
